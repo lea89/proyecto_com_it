@@ -14,7 +14,7 @@ public class TipoReseniaDB {
 			
 			Statement query = DB.conexion.createStatement();
 			
-			return query.execute("INSERT INTO tipo_resenia (tipoResenia) VALUES ('"+tipo.getTipoResenia()+"')");
+			return query.execute("INSERT INTO tipo_resenia (tipoResenia) VALUES ('"+tipo.getResenia()+"')");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -40,7 +40,7 @@ public class TipoReseniaDB {
 			
 			Statement query = DB.conexion.createStatement();
 			
-			return query.execute("UPDATE SET tipoResenia = "+tipo.getTipoResenia()+" FROM tipo_resenia WHERE id = "+ tipo.getId());
+			return query.execute("UPDATE SET tipoResenia = "+tipo.getResenia()+" FROM tipo_resenia WHERE id = "+ tipo.getId());
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -61,7 +61,7 @@ public class TipoReseniaDB {
 				TipoResenia tipo = new TipoResenia();
 				
 				tipo.setId(res.getInt("id"));
-				tipo.setTipoResenia("tipoResenia");
+				tipo.setResenia("tipoResenia");
 				
 				listaTipoResenia.add(tipo);
 			}

@@ -37,9 +37,9 @@ public class UsuarioDB {
 				usuario.setNombre(res.getString("nombre"));
 				usuario.setApellido(res.getString("apellido"));
 				usuario.setEmail(res.getString("email"));
-				usuario.setIdRol(res.getInt("id_rol"));
-				usuario.setnSocio(res.getString("nSocio"));
-				usuario.setObraSocial(res.getString("obraSocial"));
+				usuario.setId_rol(res.getInt("id_rol"));
+				usuario.setN_socio(res.getString("nSocio"));
+				usuario.setObra_social(res.getString("obraSocial"));
 				
 				lista_usuarios.add(usuario);
 			}
@@ -65,7 +65,7 @@ public class UsuarioDB {
 
 				query.execute("insert " + "into usuarios (nombre, apellido, dni, email, clave, rol, obraSocial, n_Socio) "
 						+ "values (" + usuario.getNombre() + "','" + usuario.getApellido() + "','" + usuario.getDni() + "','"
-						+ usuario.getEmail() + "','" + hashPassword(usuario.getClave()) +"', '" +usuario.getObraSocial() + "','"+usuario.getnSocio()+"')");
+						+ usuario.getEmail() + "','" + hashPassword(usuario.getClave()) +"', '" +usuario.getObra_social() + "','"+usuario.getN_socio()+"')");
 
 				return "El usuario se creo con exito.";
 			} else {
@@ -94,10 +94,10 @@ public class UsuarioDB {
 				user.setNombre(res.getString("nombre"));
 				user.setClave(res.getString("clave"));
 				user.setEmail(res.getString("email"));
-				user.setObraSocial(res.getString("obra_social"));
-				user.setnSocio(res.getString("n_socio"));
+				user.setObra_social(res.getString("obra_social"));
+				user.setN_socio(res.getString("n_socio"));
 				user.setId(res.getInt("id"));
-				user.setIdRol(res.getInt("id_rol"));
+				user.setId_rol(res.getInt("id_rol"));
 				user.setDni(res.getString("dni"));
 				
 			}
@@ -122,9 +122,9 @@ public class UsuarioDB {
 					+ "apellido = '"+usuario.getApellido()+"'"
 					+ "dni = '"+usuario.getDni()+"'"
 					+ "email = '"+usuario.getEmail()+"'"
-					+ "obraSocial = '"+usuario.getObraSocial()+"'"
-					+ "n_socio = '"+usuario.getnSocio()+"'"
-					+ "id_rol = '"+usuario.getIdRol()+"'"
+					+ "obraSocial = '"+usuario.getObra_social()+"'"
+					+ "n_socio = '"+usuario.getN_socio()+"'"
+					+ "id_rol = '"+usuario.getId_rol()+"'"
 					+ "clave = '"+hashPassword(usuario.getClave())+"'"
 					);
 			
@@ -149,14 +149,15 @@ public class UsuarioDB {
 		 
 	 }
 	 
-	 public static boolean loginUsuario(String dni, String clave) {
+	 public static boolean loginUsuario(String email, String clave) {
 		 boolean login = false;
 		 try {
 			 Statement query =  DB.conexion.createStatement();
-			 ResultSet res = query.executeQuery("select * from usuarios where dni = '"+dni+"'");
+			 ResultSet res = query.executeQuery("select * from usuario where email = '"+email+"'");
 			 
 			 if(res.next()) {
-				 if (checkPass(clave, res.getString("clave"))) {
+				 //if (checkPass(clave, res.getString("clave"))) {
+				 if (clave.equals(res.getString("clave"))) {
 					 login = true;
 				 }
 			 }

@@ -1,17 +1,15 @@
 package com.comit.proyecto.entidades;
 
-import java.util.ArrayList;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter @Setter
 public class Establecimiento {
 	private int id;
 
 	private String direccion;
 	private String nombre;
 	private int tipo;
-
-	
-
-	protected static ArrayList<Establecimiento> lista_establecimientos = new ArrayList<Establecimiento>();
 
 	public Establecimiento(String direccion, String nombre, int tipo) {
 		super();
@@ -21,38 +19,5 @@ public class Establecimiento {
 	}
 
 
-
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-	
-	public String getDireccion() {
-		return direccion;
-	}
-
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public int getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(int tipo) {
-		this.tipo = tipo;
-	}
 
 }

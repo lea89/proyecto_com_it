@@ -16,8 +16,8 @@ public class ReseniaDB {
 			return query.execute("INSERT INTO resenia (comentario, puntaje, idUsuario, idTipoComentario) VALUES ('"
 			+resenia.getComentario()+"',"
 			+resenia.getPuntaje()+","
-			+resenia.getIdUsuario()+","
-			+resenia.getIdTipoResenia()+")");
+			+resenia.getId_usuario()+","
+			+resenia.getId_tipo_resenia()+")");
 			
 
 		} catch(Exception e) {
@@ -40,8 +40,8 @@ public class ReseniaDB {
 
 				resenia.setComentario(res.getString("comentario"));
 				resenia.setId(res.getInt("id"));
-				resenia.setIdTipoResenia(res.getInt("idTipoResenia"));
-				resenia.setIdUsuario(res.getInt("idUsuario"));
+				resenia.setId_tipo_resenia(res.getInt("idTipoResenia"));
+				resenia.setId_usuario(res.getInt("idUsuario"));
 				resenia.setPuntaje(res.getInt("puntaje"));
 			}
 			
@@ -68,8 +68,8 @@ public class ReseniaDB {
 				
 				resenia.setComentario(res.getString("comentario"));
 				resenia.setId(res.getInt("id"));
-				resenia.setIdTipoResenia(res.getInt("idTipoResenia"));
-				resenia.setIdUsuario(res.getInt("idUsuario"));
+				resenia.setId_tipo_resenia(res.getInt("idTipoResenia"));
+				resenia.setId_usuario(res.getInt("idUsuario"));
 				resenia.setPuntaje(res.getInt("puntaje"));
 				
 				listaResenias.add(resenia);

@@ -3,6 +3,8 @@ package com.comit.proyecto.modelos;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+import com.vaadin.flow.component.notification.Notification;
+
 public class DB {
 	
 	
@@ -23,16 +25,17 @@ public class DB {
 			Class.forName(driver);
 		
 			conexion = DriverManager.getConnection(url + dbName, userName, password);
-		   
+
 		   if(!conexion.isClosed()) {
 			   
 				return conexion;
+		   } else {
+			   
 		   }
 	
 		} catch (Exception e) {
 		   
-			e.printStackTrace();
-			
+			//e.printStack()
 		}
 
 		return conexion;
