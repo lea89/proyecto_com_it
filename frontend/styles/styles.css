@@ -1,20 +1,30 @@
 * {
 	padding: 0;
+	margin: 0;
 }
 .contenedor {
 	width:80%;
 	margin: auto;
 }
-.menu {
-	background-color:#40e0d0;
-	width:100%;
-	padding:1%;
+.contenedorForm{
+	width: 30%;
+	margin: 10% auto;
 	display:flex;
-	flex-direction:row-reverse;
-	justify-content: space-around;
+	flex-direction: column;
+	flex-wrap: wrap;
+	padding: 5%;
+	border-radius: 25px;
+	border: 3px solid cornflowerblue;
 }
 
-.menuItem {
-	color:white;
-	margin: 10px;
+vaadin-text-field {
+	margin-top: 10%;
+}
+
+.error {
+	color: red;
+}
+
+.success{
+	color:green;
 }

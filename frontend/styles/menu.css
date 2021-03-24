@@ -1,0 +1,22 @@
+menu{
+	width:100%;
+	display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: dodgerblue;
+    position: absolute;
+    top:0;
+}
+
+vaadin-menu-bar{
+	margin:auto;
+	--lumo-primary-text-color: white;
+}
+
+.vaadin-menu-list-box {
+    --_lumo-list-box-item-selected-icon-display: none;
+    min-width: 145px;
+    margin:2%;
+    text-align: center;
+}
