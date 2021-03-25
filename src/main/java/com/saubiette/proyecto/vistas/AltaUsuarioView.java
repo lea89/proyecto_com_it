@@ -21,14 +21,10 @@ import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
-@Route("usuario")
 @Component
+@Route("altaUsuario")
 @CssImport("styles/styles.css")
 public class AltaUsuarioView extends VerticalLayout {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	Button btnCrear;
@@ -49,14 +45,14 @@ public class AltaUsuarioView extends VerticalLayout {
 
 	ComboBox<Rol> roles;
 
-	@Autowired
 	UsuarioController userController;
 
-	@Autowired
 	RolController rolController;
 
-	public AltaUsuarioView() {
-
+	@Autowired
+	public AltaUsuarioView(RolController rolController, UsuarioController userController) {
+		this.rolController = rolController;
+		this.userController = userController;
 		setElements();
 
 		setListener();
