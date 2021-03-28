@@ -31,25 +31,25 @@ public class Menu extends HorizontalLayout {
 		SubMenu rolesSubmenu = roles.getSubMenu();
 
 		MenuItem altaItemEstablecimientos = establecimientoSubmenu.addItem("Alta");
-		MenuItem bajaItemEstablecimientos = establecimientoSubmenu.addItem("Baja");
-		MenuItem modificarItemEstablecimientos = establecimientoSubmenu.addItem("Modificacion");
-		MenuItem listarItemEstablecimientos = establecimientoSubmenu.addItem("Lista");
+		MenuItem listarItemEstablecimientos = establecimientoSubmenu.addItem("Lista", e -> {
+			UI.getCurrent().navigate("establecimientos");
+		});
 
 		MenuItem altaItemUsuarios = usuariosSubmenu.addItem("Alta", e -> {
-			UI.getCurrent().navigate("altaUsuario");
+			UI.getCurrent().navigate("usuarios/alta");
 		});
 
-		MenuItem bajaItemUsuarios = usuariosSubmenu.addItem("Baja");
-		MenuItem modificarItemUsuarios = usuariosSubmenu.addItem("Modificacion");
-		MenuItem listarItemUsuarios = usuariosSubmenu.addItem("Lista");
+		MenuItem listarItemUsuarios = usuariosSubmenu.addItem("Listar", e -> {
+			UI.getCurrent().navigate("usuarios");
+		});
 
 		MenuItem altaItemRoles = rolesSubmenu.addItem("Alta", e -> {
-			UI.getCurrent().navigate("altaUsuario");
+			UI.getCurrent().navigate("roles/alta");
 		});
 
-		MenuItem bajaItemRoles = rolesSubmenu.addItem("Baja");
-		MenuItem modificarItemRoles = rolesSubmenu.addItem("Modificacion");
-		MenuItem listarItemRoles = rolesSubmenu.addItem("Lista");
+		MenuItem listarItemRoles = rolesSubmenu.addItem("Lista", e -> {
+			UI.getCurrent().navigate("roles");
+		});
 
 		add(menuBar);
 	}

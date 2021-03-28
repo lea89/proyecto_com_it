@@ -5,6 +5,9 @@
 .contenedor {
 	width:80%;
 	margin: auto;
+	display: flex;
+	flex-direction:column;
+	margin-top:10%;
 }
 .contenedorForm{
 	width: 30%;
@@ -21,10 +24,31 @@ vaadin-text-field {
 	margin-top: 10%;
 }
 
-.error {
+.error, .cancelar {
 	color: red;
+	padding: 5%;
 }
 
-.success{
+.success, .confirmar{
 	color:green;
+	padding: 5%;
+}
+
+iron-icon {
+	padding:5%;
+	cursor: pointer;
+}
+
+.dialog-edita, .dialog-elimina {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	text-align: center;
+}
+
+.dialog-edita, .dialog-elimina span {
+	margin: 5% 10%;
+}
+.cancelar {
+	color:red;
 }

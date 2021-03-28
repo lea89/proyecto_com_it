@@ -2,7 +2,6 @@ package com.saubiette.proyecto.entidades;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,12 +29,10 @@ public class Usuario implements Serializable {
 	private int id;
 	private String nombre;
 	private String apellido;
-	@Column(unique = true)
 	private String email;
 	private String clave;
 	private String obra_social;
 	private String n_socio;
-	@Column(unique = true)
 	private String dni;
 
 	@OneToOne

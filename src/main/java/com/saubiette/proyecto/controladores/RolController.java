@@ -26,4 +26,13 @@ public class RolController {
 
 		return rolRepositorio.save(rol);
 	}
+
+	public void eliminarRol(Rol rol) {
+		rolRepositorio.deleteById(rol.getId());
+	}
+
+	public Rol actualizarRol(Rol rol) {
+
+		return rolRepositorio.save(rol);
+	}
 }

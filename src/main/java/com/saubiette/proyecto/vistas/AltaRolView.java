@@ -14,7 +14,7 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
 @Route("roles/alta")
-public class RolView extends VerticalLayout {
+public class AltaRolView extends VerticalLayout {
 
 	@Autowired
 	RolController rolController;
@@ -22,7 +22,7 @@ public class RolView extends VerticalLayout {
 	TextField txtRol;
 	Button btnCrear;
 
-	public RolView() {
+	public AltaRolView() {
 		Menu menu = new Menu();
 
 		setElements();
@@ -57,7 +57,7 @@ public class RolView extends VerticalLayout {
 				;
 				if (rolCreado != null) {
 
-					notification = new Notification("El rol se creo correctamente", 3000, Position.TOP_END);
+					notification = new Notification("El rol se creo correctamente", 3000, Position.BOTTOM_CENTER);
 					notification.open();
 
 				} else {
@@ -65,7 +65,7 @@ public class RolView extends VerticalLayout {
 					notification.open();
 				}
 			} catch (Exception e) {
-				notification = new Notification(e.getMessage(), 3000, Position.TOP_END);
+				notification = new Notification(e.getMessage(), 3000, Position.BOTTOM_CENTER);
 				notification.open();
 			}
 
