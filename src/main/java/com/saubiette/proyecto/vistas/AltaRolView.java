@@ -1,10 +1,14 @@
 package com.saubiette.proyecto.vistas;
 
+import java.sql.Time;
+import java.util.Timer;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.saubiette.proyecto.controladores.RolController;
 import com.saubiette.proyecto.entidades.Rol;
 import com.saubiette.vistas.componentes.Menu;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.notification.Notification;
@@ -59,6 +63,8 @@ public class AltaRolView extends VerticalLayout {
 
 					notification = new Notification("El rol se creo correctamente", 3000, Position.BOTTOM_CENTER);
 					notification.open();
+					Thread.sleep(2000);
+					UI.getCurrent().navigate("roles");
 
 				} else {
 					notification = new Notification("Error al crear el rol.", 3000, Position.TOP_END);

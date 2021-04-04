@@ -30,7 +30,10 @@ public class Menu extends HorizontalLayout {
 		SubMenu usuariosSubmenu = usuarios.getSubMenu();
 		SubMenu rolesSubmenu = roles.getSubMenu();
 
-		MenuItem altaItemEstablecimientos = establecimientoSubmenu.addItem("Alta");
+		MenuItem altaItemEstablecimientos = establecimientoSubmenu.addItem("Alta", e -> {
+			UI.getCurrent().navigate("establecimientos/alta");
+		});
+
 		MenuItem listarItemEstablecimientos = establecimientoSubmenu.addItem("Lista", e -> {
 			UI.getCurrent().navigate("establecimientos");
 		});

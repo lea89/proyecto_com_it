@@ -22,12 +22,16 @@ import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.router.BeforeEnterEvent;
+import com.vaadin.flow.router.BeforeEnterObserver;
+import com.vaadin.flow.router.PreserveOnRefresh;
 import com.vaadin.flow.router.Route;
 
 @Component
 @Route("roles")
 @CssImport("styles/styles.css")
-public class ListarRolesView extends VerticalLayout {
+@PreserveOnRefresh
+public class ListarRolesView extends VerticalLayout implements BeforeEnterObserver{
 
 	/**
 	 * 
@@ -73,6 +77,24 @@ public class ListarRolesView extends VerticalLayout {
 		grid.addThemeVariants(GridVariant.LUMO_NO_BORDER, GridVariant.LUMO_NO_ROW_BORDERS,
 				GridVariant.LUMO_ROW_STRIPES);
 
+		grid.addComponentColumn(rol -> {
+			Div div = new Div();
+
+			Icon eliminar = VaadinIcon.CLOSE.create();
+
+			eliminar.setColor("red");
+
+			eliminar.addClickListener(e -> setDialogElimina(rol));
+
+			Icon editar = new Icon(VaadinIcon.EDIT);
+
+			editar.addClickListener(e -> setDialogEdita(rol));
+
+			div.add(editar, eliminar);
+
+			return div;
+
+		});
 		contenedor.add(grid);
 
 		loadData();
@@ -170,24 +192,18 @@ public class ListarRolesView extends VerticalLayout {
 
 		grid.setItems(result);
 
-		grid.addComponentColumn(rol -> {
-			Div div = new Div();
-
-			Icon eliminar = VaadinIcon.CLOSE.create();
-
-			eliminar.setColor("red");
-
-			eliminar.addClickListener(e -> setDialogElimina(rol));
-
-			Icon editar = new Icon(VaadinIcon.EDIT);
-
-			editar.addClickListener(e -> setDialogEdita(rol));
-
-			div.add(editar, eliminar);
-
-			return div;
-
-		});
+		
 		grid.getDataProvider().refreshAll();
+	} 
+
+	@Override
+	public void beforeEnter(BeforeEnterEvent event) {
+		// TODO Auto-generated method stub
+		result = new ArrayList<Rol>();
+		
+		grid.setItems(result);
+
+		
+		loadData();
 	}
 }

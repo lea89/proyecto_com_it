@@ -8,15 +8,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 @Entity
 
 @Table(name = "Establecimiento")
@@ -30,13 +29,15 @@ public class Establecimiento implements Serializable {
 
 	private String direccion;
 	private String nombre;
-	private int tipo;
+
+	@OneToOne
+	private TipoEstablecimiento tipo;
 
 	@OneToMany(mappedBy = "establecimiento")
 	private List<Visita> visita;
 
 	@OneToMany(mappedBy = "establecimiento")
-	private List<Area> area;
+	private List<Area> areas;
 
 	@OneToMany(mappedBy = "establecimiento")
 	private List<Personal> personal;

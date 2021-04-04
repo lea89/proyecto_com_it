@@ -15,12 +15,13 @@ import com.vaadin.flow.router.AfterNavigationEvent;
 import com.vaadin.flow.router.AfterNavigationObserver;
 import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
+import com.vaadin.flow.router.PreserveOnRefresh;
 import com.vaadin.flow.router.Route;
 
 @Component
 @Route("usuarios/editar")
 @CssImport("styles/styles.css")
-
+@PreserveOnRefresh
 public class EditarUsuarioView extends VerticalLayout implements HasUrlParameter<String>, AfterNavigationObserver {
 
 	private SpringContextHelper beans;
@@ -50,14 +51,14 @@ public class EditarUsuarioView extends VerticalLayout implements HasUrlParameter
 	@Override
 	public void setParameter(BeforeEvent event, String id) {
 
-		idUsuario = Integer.parseInt(id);
-
-		Menu menu = new Menu();
-		FormUsuario form = new FormUsuario(userController, rolController, idUsuario);
-
+		removeAll();
 		div = new Div();
-		div.addClassName("contenedor");
+		idUsuario = Integer.parseInt(id);
+		form = new FormUsuario(userController, rolController, idUsuario);
 		div.add(form);
+		Menu menu = new Menu();
+		div.addClassName("contenedor");
+		
 
 		add(menu, div);
 	}

@@ -17,9 +17,11 @@ import com.vaadin.flow.component.notification.Notification.Position;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.router.BeforeEnterEvent;
+import com.vaadin.flow.router.BeforeEnterListener;
 
 @Component
-public class FormUsuario extends VerticalLayout {
+public class FormUsuario extends VerticalLayout implements BeforeEnterListener{
 	/**
 	 * 
 	 */
@@ -79,7 +81,7 @@ public class FormUsuario extends VerticalLayout {
 
 		// String s = this.userController.traerUsuario(1).getApellido();
 		usuario = this.userController.traerUsuario(idUsuario);
-		System.out.println(idUsuario);
+		
 		setValueElements(usuario);
 
 		Div contenedor = new Div();
@@ -155,8 +157,13 @@ public class FormUsuario extends VerticalLayout {
 
 		btnCrear.addClickListener(event -> {
 
-			Usuario usuario = new Usuario();
-			usuario.setId(usuario.getId());
+			if(usuario == null) {
+				usuario = new Usuario();
+			}
+			
+			if(idUsuario != 0)
+				usuario.setId(idUsuario);
+			
 			usuario.setEmail(txtEmail.getValue());
 			usuario.setClave(txtClave.getValue());
 			usuario.setNombre(txtNombre.getValue());
@@ -187,6 +194,14 @@ public class FormUsuario extends VerticalLayout {
 			}
 
 		});
+	}
+
+	@Override
+	public void beforeEnter(BeforeEnterEvent event) {
+		// TODO Auto-generated method stub
+		setValueElements(null);
+		setValueElements(usuario);
+		
 	}
 
 }
