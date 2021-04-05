@@ -15,6 +15,11 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 @Tag("menu")
 public class Menu extends HorizontalLayout {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Menu() {
 		MenuBar menuBar = new MenuBar();
 
@@ -29,29 +34,47 @@ public class Menu extends HorizontalLayout {
 		SubMenu establecimientoSubmenu = establecimientos.getSubMenu();
 		SubMenu usuariosSubmenu = usuarios.getSubMenu();
 		SubMenu rolesSubmenu = roles.getSubMenu();
+		SubMenu areaSubmenu = areas.getSubMenu();
+		SubMenu personalSubmenu = personal.getSubMenu();
 
-		MenuItem altaItemEstablecimientos = establecimientoSubmenu.addItem("Alta", e -> {
+		establecimientoSubmenu.addItem("Alta", e -> {
 			UI.getCurrent().navigate("establecimientos/alta");
 		});
 
-		MenuItem listarItemEstablecimientos = establecimientoSubmenu.addItem("Lista", e -> {
+		establecimientoSubmenu.addItem("Lista", e -> {
 			UI.getCurrent().navigate("establecimientos");
 		});
 
-		MenuItem altaItemUsuarios = usuariosSubmenu.addItem("Alta", e -> {
+		usuariosSubmenu.addItem("Alta", e -> {
 			UI.getCurrent().navigate("usuarios/alta");
 		});
 
-		MenuItem listarItemUsuarios = usuariosSubmenu.addItem("Listar", e -> {
+		usuariosSubmenu.addItem("Listar", e -> {
 			UI.getCurrent().navigate("usuarios");
 		});
 
-		MenuItem altaItemRoles = rolesSubmenu.addItem("Alta", e -> {
+		rolesSubmenu.addItem("Alta", e -> {
 			UI.getCurrent().navigate("roles/alta");
 		});
 
-		MenuItem listarItemRoles = rolesSubmenu.addItem("Lista", e -> {
+		rolesSubmenu.addItem("Lista", e -> {
 			UI.getCurrent().navigate("roles");
+		});
+
+		areaSubmenu.addItem("Alta", e -> {
+			UI.getCurrent().navigate("areas/alta");
+		});
+
+		areaSubmenu.addItem("Lista", e -> {
+			UI.getCurrent().navigate("areas");
+		});
+
+		personalSubmenu.addItem("Alta", e -> {
+			UI.getCurrent().navigate("personal/alta");
+		});
+
+		personalSubmenu.addItem("Lista", e -> {
+			UI.getCurrent().navigate("personal");
 		});
 
 		add(menuBar);

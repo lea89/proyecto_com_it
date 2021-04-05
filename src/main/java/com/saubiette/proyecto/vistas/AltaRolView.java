@@ -1,8 +1,5 @@
 package com.saubiette.proyecto.vistas;
 
-import java.sql.Time;
-import java.util.Timer;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.saubiette.proyecto.controladores.RolController;
@@ -13,6 +10,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.Notification.Position;
+import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
@@ -58,21 +56,23 @@ public class AltaRolView extends VerticalLayout {
 
 			try {
 				Rol rolCreado = rolController.crearRol(rol);
-				;
+
 				if (rolCreado != null) {
 
-					notification = new Notification("El rol se creo correctamente", 3000, Position.BOTTOM_CENTER);
-					notification.open();
+					Notification.show("El rol fue dado de alta satisfactoriamente", 3000, Position.TOP_CENTER)
+							.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+
 					Thread.sleep(2000);
+
 					UI.getCurrent().navigate("roles");
 
 				} else {
-					notification = new Notification("Error al crear el rol.", 3000, Position.TOP_END);
-					notification.open();
+					Notification.show("El rol no pudo guardarse", 3000, Position.TOP_CENTER)
+							.addThemeVariants(NotificationVariant.LUMO_ERROR);
 				}
 			} catch (Exception e) {
-				notification = new Notification(e.getMessage(), 3000, Position.BOTTOM_CENTER);
-				notification.open();
+				Notification.show("El rol no pudo guardarse", 3000, Position.TOP_CENTER)
+						.addThemeVariants(NotificationVariant.LUMO_ERROR);
 			}
 
 		});

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 import com.saubiette.proyecto.controladores.RolController;
 import com.saubiette.proyecto.controladores.UsuarioController;
-import com.saubiette.proyecto.entidades.Rol;
 import com.saubiette.proyecto.entidades.Usuario;
 import com.saubiette.proyecto.util.SpringContextHelper;
 import com.saubiette.vistas.componentes.Menu;
@@ -25,7 +24,6 @@ import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.BeforeEnterEvent;
-import com.vaadin.flow.router.BeforeEnterListener;
 import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.PreserveOnRefresh;
 import com.vaadin.flow.router.Route;
@@ -34,7 +32,7 @@ import com.vaadin.flow.router.Route;
 @Route("usuarios")
 @CssImport("styles/styles.css")
 @PreserveOnRefresh
-public class ListarUsuariosView extends VerticalLayout implements BeforeEnterObserver{
+public class ListarUsuariosView extends VerticalLayout implements BeforeEnterObserver {
 
 	UsuarioController userController;
 
@@ -125,11 +123,11 @@ public class ListarUsuariosView extends VerticalLayout implements BeforeEnterObs
 
 		grid.addThemeVariants(GridVariant.LUMO_NO_BORDER, GridVariant.LUMO_NO_ROW_BORDERS,
 				GridVariant.LUMO_ROW_STRIPES);
-		
+
 		grid.addColumn((usuario) -> {
 			return usuario.getRol().getRol();
 		}).setHeader("Rol");
-		
+
 		grid.addComponentColumn(usuario -> {
 			Div div = new Div();
 
@@ -153,11 +151,6 @@ public class ListarUsuariosView extends VerticalLayout implements BeforeEnterObs
 		contenedor.add(grid);
 
 		loadData();
-
-		/*
-		 * this.rolController = getRolController(); this.userController =
-		 * getUsuarioController(); loadData();
-		 */
 	}
 
 	private void loadData() {
@@ -167,20 +160,16 @@ public class ListarUsuariosView extends VerticalLayout implements BeforeEnterObs
 
 		grid.setItems(result);
 
-		
-
-		
 		grid.getDataProvider().refreshAll();
 	}
-	
+
 	@Override
 	public void beforeEnter(BeforeEnterEvent event) {
 		// TODO Auto-generated method stub
 		result = new ArrayList<Usuario>();
-		
+
 		grid.setItems(result);
 
-		
 		loadData();
 	}
 
