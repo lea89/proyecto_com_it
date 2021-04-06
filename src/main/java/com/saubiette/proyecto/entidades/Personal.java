@@ -24,6 +24,10 @@ import lombok.Setter;
 @Table(name = "Personal")
 public class Personal implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -40,5 +44,10 @@ public class Personal implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "id_establecimiento")
 	private Establecimiento establecimiento;
+
+	@Override
+	public String toString() {
+		return apellido.toUpperCase() + " " + nombre;
+	}
 
 }
