@@ -12,6 +12,7 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.Notification.Position;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -21,7 +22,7 @@ import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterListener;
 
 @Component
-public class FormUsuario extends VerticalLayout implements BeforeEnterListener{
+public class FormUsuario extends VerticalLayout implements BeforeEnterListener {
 	/**
 	 * 
 	 */
@@ -38,6 +39,8 @@ public class FormUsuario extends VerticalLayout implements BeforeEnterListener{
 	TextField txtNumero_socio;
 
 	TextField mensaje;
+
+	Span titulo;
 
 	Div formUsuario;
 
@@ -65,8 +68,8 @@ public class FormUsuario extends VerticalLayout implements BeforeEnterListener{
 		Div contenedor = new Div();
 
 		contenedor.addClassName("contenedorForm");
-		contenedor.add(txtEmail, txtClave, txtNombre, txtApellido, txtDni, txtObra_social, txtNumero_socio, roles,
-				btnCrear);
+		contenedor.add(titulo, txtEmail, txtClave, txtNombre, txtApellido, txtDni, txtObra_social, txtNumero_socio,
+				roles, btnCrear);
 
 		add(contenedor);
 	}
@@ -81,14 +84,14 @@ public class FormUsuario extends VerticalLayout implements BeforeEnterListener{
 
 		// String s = this.userController.traerUsuario(1).getApellido();
 		usuario = this.userController.traerUsuario(idUsuario);
-		
+
 		setValueElements(usuario);
 
 		Div contenedor = new Div();
 
 		contenedor.addClassName("contenedorForm");
-		contenedor.add(txtEmail, txtClave, txtNombre, txtApellido, txtDni, txtObra_social, txtNumero_socio, roles,
-				btnCrear);
+		contenedor.add(titulo, txtEmail, txtClave, txtNombre, txtApellido, txtDni, txtObra_social, txtNumero_socio,
+				roles, btnCrear);
 
 		add(contenedor);
 	}
@@ -112,6 +115,8 @@ public class FormUsuario extends VerticalLayout implements BeforeEnterListener{
 		txtNumero_socio = new TextField("Numero de afiliado: ");
 
 		btnCrear = new Button("Crear usuario");
+		titulo = new Span();
+		titulo.addClassName("titulo");
 
 		roles = new ComboBox<Rol>();
 		roles.setLabel("Rol");
@@ -126,10 +131,12 @@ public class FormUsuario extends VerticalLayout implements BeforeEnterListener{
 		btn = "";
 		msg = "";
 		if (idUsuario != 0) {
+			titulo.setText("Editar usuario");
 			btn = "Editar cambios";
 			msg = "Se guardaron los datos de usuario correctamente!";
 			btnCrear.setText(btn);
 		} else {
+			titulo.setText("Alta usuario");
 			btn = "Crear cambios";
 			msg = "Se creo el usuario correctamente!";
 			btnCrear.setText("Crear usuario");
@@ -157,13 +164,13 @@ public class FormUsuario extends VerticalLayout implements BeforeEnterListener{
 
 		btnCrear.addClickListener(event -> {
 
-			if(usuario == null) {
+			if (usuario == null) {
 				usuario = new Usuario();
 			}
-			
-			if(idUsuario != 0)
+
+			if (idUsuario != 0)
 				usuario.setId(idUsuario);
-			
+
 			usuario.setEmail(txtEmail.getValue());
 			usuario.setClave(txtClave.getValue());
 			usuario.setNombre(txtNombre.getValue());
@@ -201,7 +208,7 @@ public class FormUsuario extends VerticalLayout implements BeforeEnterListener{
 		// TODO Auto-generated method stub
 		setValueElements(null);
 		setValueElements(usuario);
-		
+
 	}
 
 }

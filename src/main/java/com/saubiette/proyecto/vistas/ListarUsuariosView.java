@@ -155,7 +155,7 @@ public class ListarUsuariosView extends VerticalLayout implements BeforeEnterObs
 
 	private void loadData() {
 
-		usuariosList = userController.traerUsuarios("");
+		usuariosList = userController.traerUsuarios();
 		usuariosList.forEach(result::add);
 
 		grid.setItems(result);

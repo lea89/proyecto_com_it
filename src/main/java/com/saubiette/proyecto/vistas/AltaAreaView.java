@@ -15,6 +15,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.Notification.Position;
 import com.vaadin.flow.component.notification.NotificationVariant;
@@ -46,6 +47,8 @@ public class AltaAreaView extends VerticalLayout {
 
 	Area area;
 
+	Span titulo = new Span();
+
 	@Autowired
 	public AltaAreaView(AreaController areaController, EstablecimientoController establecimientoController) {
 		this.areaController = areaController;
@@ -54,6 +57,8 @@ public class AltaAreaView extends VerticalLayout {
 
 		btnCrear.addClickListener(e -> guardar());
 
+		titulo.addClassName("titulo");
+		titulo.setText("Alta area");
 		establecimientos = crearComboEstablecimientos();
 
 		configureBinder();
@@ -61,7 +66,7 @@ public class AltaAreaView extends VerticalLayout {
 		Div contenedor = new Div();
 
 		contenedor.addClassName("contenedorForm");
-		contenedor.add(txtArea, establecimientos, btnCrear);
+		contenedor.add(titulo, txtArea, establecimientos, btnCrear);
 
 		add(menu, contenedor);
 	}

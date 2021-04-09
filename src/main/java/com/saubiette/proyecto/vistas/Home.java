@@ -1,12 +1,11 @@
 package com.saubiette.proyecto.vistas;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.saubiette.proyecto.GreetService;
 import com.saubiette.vistas.componentes.Menu;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.router.PreserveOnRefresh;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.PWA;
 
@@ -15,6 +14,7 @@ import com.vaadin.flow.server.PWA;
 
 @CssImport(value = "./styles/vaadin-text-field-styles.css", themeFor = "vaadin-text-field")
 @CssImport("./styles/styles.css")
+@PreserveOnRefresh
 public class Home extends VerticalLayout {
 
 	/**
@@ -22,14 +22,15 @@ public class Home extends VerticalLayout {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public Home(@Autowired GreetService service) {
+	public Home() {
 
 		Menu m = new Menu();
 		Div div = new Div();
-		div.setSizeFull();
 		div.add(m);
-
-		add(div);
+		Span text = new Span("No tienes permisos para acceder a esta seccion");
+		text.getElement().setAttribute("font-size", "15");
+		text.getElement().setAttribute("color", "red");
+		add(m, div, text);
 
 	}
 

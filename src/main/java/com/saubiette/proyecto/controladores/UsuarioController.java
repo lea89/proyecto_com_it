@@ -1,42 +1,59 @@
 package com.saubiette.proyecto.controladores;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.saubiette.proyecto.entidades.Usuario;
 import com.saubiette.proyecto.repositorios.UsuarioRepositorio;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.saubiette.proyecto.util.AuthenticationRequest;
+import com.saubiette.proyecto.util.AuthenticationResponse;
+import com.saubiette.proyecto.util.JwtService;
+import com.saubiette.proyecto.util.MyUserDetailService;
 
 @Controller // This means that this class is a Controller
 @RequestMapping(path = "/usuarios")
+@RestController
 public class UsuarioController {
+
+	private AuthenticationManager authenticationManager;
+	private MyUserDetailService myUserDetailService;
+	private JwtService jwtService;
 
 	UsuarioRepositorio userRepository;
 
-	private HorizontalLayout headerLayout;
-	private HorizontalLayout navContentLayout;
-
-	public UsuarioController(UsuarioRepositorio userRepository) {
+	public UsuarioController(UsuarioRepositorio userRepository, MyUserDetailService myUserDetailService,
+			AuthenticationManager authenticationManager) {
 		this.userRepository = userRepository;
+		jwtService = new JwtService();
+		myUserDetailService = new MyUserDetailService();
 	}
 
-	public Iterable<Usuario> traerUsuarios(String email) {
+	public Usuario traerUsuarioByEmail(String email) {
 
-		ArrayList<Usuario> lista_usuarios = new ArrayList<Usuario>();
+		Usuario usuario;
 
 		if (email != null && !email.equals("")) {
 
-			lista_usuarios.add(userRepository.findByEmail(email));
+			usuario = userRepository.findByEmail(email);
 
-			return lista_usuarios;
-		} else {
-
-			return userRepository.findAll();
+			return usuario;
 		}
+
+		return null;
+
+	}
+
+	public Iterable<Usuario> traerUsuarios() {
+		return userRepository.findAll();
 	}
 
 	public Usuario crearUsuario(Usuario usuario) {
@@ -66,16 +83,19 @@ public class UsuarioController {
 		userRepository.deleteById(id);
 	}
 
-	public boolean login(@RequestParam String email, @RequestParam String clave) {
-
-		// return UsuarioDB.loginUsuario(usuario, clave);
-		Usuario usuario = userRepository.findByEmail(email);
-
-		if (usuario.getClave().equals(clave)) {
-			return true;
-		} else {
-			return false;
+	@PostMapping("/login")
+	public AuthenticationResponse createToken(@RequestBody AuthenticationRequest authenticationRequest)
+			throws Exception {
+		try {
+			UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+					authenticationRequest.getUsername(), authenticationRequest.getPassword());
+			authenticationManager.authenticate(authentication);
+		} catch (BadCredentialsException e) {
+			throw new Exception("Invalid username or password", e);
 		}
+		UserDetails userDetails = myUserDetailService.loadUserByUsername(authenticationRequest.getUsername());
+		String token = jwtService.createToken(userDetails);
 
+		return new AuthenticationResponse(token);
 	}
 }

@@ -9,12 +9,14 @@ import com.saubiette.vistas.componentes.FormUsuario;
 import com.saubiette.vistas.componentes.Menu;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.router.PreserveOnRefresh;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLayout;
 
 @Component
 @Route("usuarios/alta")
 @CssImport("styles/styles.css")
+@PreserveOnRefresh
 public class AltaUsuarioView extends VerticalLayout implements RouterLayout {
 	private static final long serialVersionUID = 1L;
 

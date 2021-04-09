@@ -8,6 +8,7 @@ import com.saubiette.vistas.componentes.Menu;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.Notification.Position;
 import com.vaadin.flow.component.notification.NotificationVariant;
@@ -24,6 +25,8 @@ public class AltaRolView extends VerticalLayout {
 	TextField txtRol;
 	Button btnCrear;
 
+	Span titulo = new Span();
+
 	public AltaRolView() {
 		Menu menu = new Menu();
 
@@ -33,8 +36,14 @@ public class AltaRolView extends VerticalLayout {
 
 		Div contenedor = new Div();
 
+		titulo.setText("Alta rol");
+		titulo.addClassName("titulo");
+
 		contenedor.addClassName("contenedorForm");
-		contenedor.add(txtRol, btnCrear);
+		contenedor.add(titulo, txtRol, btnCrear);
+
+		titulo.setText("Alta rol");
+		titulo.addClassName("titulo");
 
 		add(menu, contenedor);
 	}

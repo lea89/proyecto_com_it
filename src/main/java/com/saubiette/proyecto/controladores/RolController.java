@@ -22,6 +22,12 @@ public class RolController {
 		return rolRepositorio.findAll();
 	}
 
+	public Rol traerRolesById(int id) {
+		if (rolRepositorio.findById(id).isPresent())
+			return rolRepositorio.findById(id).get();
+		return null;
+	}
+
 	public Rol crearRol(Rol rol) {
 
 		return rolRepositorio.save(rol);

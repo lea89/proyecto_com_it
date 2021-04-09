@@ -14,6 +14,7 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.Notification.Position;
 import com.vaadin.flow.component.notification.NotificationVariant;
@@ -34,6 +35,7 @@ public class FormPersonal extends VerticalLayout {
 	TextField txtDireccion;
 	TextField txtDni;
 
+	Span titulo = new Span();
 	Button crear;
 
 	@Autowired
@@ -79,6 +81,8 @@ public class FormPersonal extends VerticalLayout {
 		txtLegajo = new TextField("Legajo");
 		txtDireccion = new TextField("Direccion");
 		txtDni = new TextField("DNI");
+		titulo.addClassName("titulo");
+		titulo.setText("Alta personal");
 
 		if (idPersonal == 0) {
 			// titulo.setText("Editar personal");
@@ -109,8 +113,8 @@ public class FormPersonal extends VerticalLayout {
 		contenedor = new Div();
 
 		contenedor.addClassName("contenedorForm");
-		contenedor.add(txtLegajo, txtNombre, txtApellido, txtDni, txtDireccion, comboAreas, comboEstablecimientos,
-				crear);
+		contenedor.add(titulo, txtLegajo, txtNombre, txtApellido, txtDni, txtDireccion, comboAreas,
+				comboEstablecimientos, crear);
 
 		add(contenedor);
 	}

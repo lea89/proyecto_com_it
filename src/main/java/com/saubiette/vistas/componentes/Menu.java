@@ -2,6 +2,7 @@ package com.saubiette.vistas.componentes;
 
 import org.springframework.stereotype.Component;
 
+import com.saubiette.proyecto.util.MyUserDetails;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.contextmenu.MenuItem;
@@ -18,9 +19,13 @@ public class Menu extends HorizontalLayout {
 	/**
 	 * 
 	 */
+
+	MyUserDetails userDetails;
+
 	private static final long serialVersionUID = 1L;
 
 	public Menu() {
+
 		MenuBar menuBar = new MenuBar();
 
 		menuBar.setOpenOnHover(true);
